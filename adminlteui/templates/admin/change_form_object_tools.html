@@ -1,0 +1,16 @@
+{% load i18n admin_urls %}
+{% block object-tools-items %}
+<div class="col-md-2">
+	<div class="form-group">
+	    {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+	    <a href="{% add_preserved_filters history_url %}" class="btn btn-default form-control historylink">{% trans "History" %}</a>
+	</div>
+</div>
+{% if has_absolute_url %}
+<div class="col-md-2">
+	<div class="form-group">
+		<a class="btn btn-default form-control" href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a>
+	</div>
+</div>  
+{% endif %}
+{% endblock %}

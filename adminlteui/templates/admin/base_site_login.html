@@ -1,0 +1,88 @@
+{% load i18n static adminlte_options %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:" en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl" {% endif %}>
+
+<head>
+    <!-- Current language: {{ LANGUAGE_CODE }} -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        Nossa Defensoria - Seja bem-vindo!
+    </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href={% static "admin/adminlte-dist/css/AdminLTE.min.css" %}>
+    <!-- iCheck -->
+    <link rel="stylesheet" href={% static "admin/plugins/iCheck/square/blue.css" %}>
+    {% block extrastyle %}{% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="hold-transition login-page" style="background-color: #133622;">
+
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="{% static 'dpge-brasao.png' %}" height="50px">
+            <a href="/" style="color: #fff;">
+                <b>Nossa</b>Defensoria
+            </a>
+        </div>
+
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">
+                {% block content_title %}{% endblock %}
+            </p>
+            
+                {% block content %}{% endblock %}
+
+            <!--<div class="social-auth-links text-center">-->
+            <!--<p>- {% trans "Other" %} -</p>-->
+            <!--<a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>{% trans 'Sign in using Facebook' %}</a>-->
+            <!--<a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i>{% trans 'Sign in using Google+' %}</a>-->
+            <!--</div>-->
+            <!-- /.social-auth-links -->
+            <div class="row">
+                {% comment %}
+                <div class="col-xs-8"><a href="#">{% trans 'Forgot password ?' %}</a></div>
+                <div class="col-xs-4 text-right"><a href="{% url 'admin:register' %}" class="text-center">
+                        {% trans "Register" %}</a>
+                </div>
+                {% endcomment %}
+            </div>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+
+    <!-- jQuery 2.2.3 -->
+    <script src={% static "admin/plugins/jQuery/jquery-2.2.3.min.js" %}></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src={% static "admin/bootstrap/js/bootstrap.min.js" %}></script>
+    <!-- iCheck -->
+    <script src={% static "admin/plugins/iCheck/icheck.min.js" %}></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
+
+</html>

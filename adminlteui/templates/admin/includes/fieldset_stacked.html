@@ -1,0 +1,82 @@
+{% load i18n admin_urls static templatetags_fieldset %}
+<div class="col-md-12">
+  <div class="box box-default collapsed-box">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            <b>{{ inline_admin_formset.opts.verbose_name|capfirst }}:</b>&nbsp;
+            <span class="inline_label">
+              {% if inline_admin_form.original %}
+                {{ inline_admin_form.original }}
+                  {% if inline_admin_form.model_admin.show_change_link and inline_admin_form.model_admin.has_registered_model %} 
+                    <a href="{% url inline_admin_form.model_admin.opts|admin_urlname:'change' inline_admin_form.original.pk|admin_urlquote %}" class="{% if inline_admin_formset.has_change_permission %}inlinechangelink{% else %}inlineviewlink{% endif %}">{% if inline_admin_formset.has_change_permission %}{% trans "Change" %}{% else %}{% trans "View" %}{% endif %}</a>
+                  {% endif %}
+              {% else %}
+                #{{ forloop.counter }}
+              {% endif %}
+            </span>
+            {% if inline_admin_form.show_url %}
+              <a href="{{ inline_admin_form.absolute_url }}">
+                {% trans "View on site" %}
+              </a>
+            {% endif %}
+          </h3>
+
+          <div class="box-tools pull-right">
+              
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-plus"></i> Mostrar/Ocultar
+            </button>
+
+              {% if inline_admin_formset.formset.can_delete and inline_admin_form.original %}
+              <span class="box-tools pull-right delete" style="margin-top: -6px; vertical-align: middle;">
+                <span style="height: 10px">
+                {{ inline_admin_form.deletion_field.field }} 
+                </span>
+                <span style="height: 10px; margin-top: -6px;">
+                {{ inline_admin_form.deletion_field.label_tag }}
+                </span>
+              </span>
+              {% endif %}
+          </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {% for line in fieldset %}
+        {% for field in line %}
+              <div class="col-md-{{ field|div_cols }}">
+                <div class="form-group">
+                    <label class="control-label text-right">
+                        {{ field.field.label }} {{field.field.field.widget.blank}}
+                    </label>
+                    <div {% if not line.fields|length_is:'1' %} class="fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"{% elif field.is_checkbox %} class="checkbox-row"{% endif %}>
+                    {% if field.is_readonly %}
+                    <div class="readonly" style="margin-top: 7px;">{{ field.contents }}</div>
+                    {% else %}
+                    {{ field.field }}
+                    {% endif %}
+                    <div class="help-block red">
+                        {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                    </div>
+                    {% if field.field.help_text %}
+                    <div class="help-block">{{ field.field.help_text|safe }}</div>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% if line.errors %}
+            <div class="col-sm-12">
+                <div class="alert alert-danger alert-dismissible">
+                    {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {% endfor %}
+
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+</div>
