@@ -8,7 +8,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>
-        Nossa Defensoria - Seja bem-vindo!
+        {% get_adminlte_option 'site_title' as adminlte_site_title %}
+        {% if adminlte_site_title.valid %}
+        {{ adminlte_site_title.site_title }}
+        {% else %}
+        {{ site_title|default:_('Django site admin') }}
+        {% endif %}
+        | {% trans "Log in" %}
     </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -37,7 +43,14 @@
         <div class="login-logo">
             <img src="{% static 'dpge-brasao.png' %}" height="50px">
             <a href="/" style="color: #fff;">
-                <b>Nossa</b>Defensoria
+                <b>
+                    {% get_adminlte_option 'site_header' as adminlte_site_header  %}
+                    {% if adminlte_site_header.valid %}
+                    {{ adminlte_site_header.site_header }}
+                    {% else %}
+                    {{ site_header }}
+                    {% endif %}
+                </b>
             </a>
         </div>
 
