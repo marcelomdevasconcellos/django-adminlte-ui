@@ -310,7 +310,12 @@
                     <ul class="treeview-menu">
                         {% for model in app.models %}
                         {% if model.admin_url %}
-                        <li><a href="{{ model.admin_url }}" ><i class="fa {% if model.icon %} {{model.icon}} {% else %}fa-circle-o{% endif %}"></i>{{ model.name }}</a></li>
+                        <li>
+                            <a href="{{ model.admin_url }}" {% if 'http' in model.admin_url %}target="_blank"{% endif %}>
+                                <i class="fa {% if model.icon %} {{model.icon}} {% else %}fa-circle-o{% endif %}"></i>
+                                {{model.link_type}} {{ model.name }}
+                            </a>
+                        </li>
                         {% endif %}
                         {% endfor %}
                     </ul>
