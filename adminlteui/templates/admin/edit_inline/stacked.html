@@ -18,7 +18,9 @@
       {{ inline_admin_form.form.non_field_errors }}
     {% endif %}
     {% for fieldset in inline_admin_form %}
-      {% include "admin/includes/fieldset_stacked.html" %}
+      {% if not forloop.parentloop.last %}
+        {% include "admin/includes/fieldset_stacked.html" %}
+      {% endif %}
     {% endfor %}
     {% if inline_admin_form.needs_explicit_pk_field %}
       {{ inline_admin_form.pk_field.field }}
