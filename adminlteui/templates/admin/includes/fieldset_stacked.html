@@ -27,7 +27,7 @@
                   <a href="{% url inline_admin_form.model_admin.opts|admin_urlname:'change' inline_admin_form.original.pk|admin_urlquote %}" class="{% if inline_admin_formset.has_change_permission %}inlinechangelink{% else %}inlineviewlink{% endif %}">{% if inline_admin_formset.has_change_permission %}{% trans "Change" %}{% else %}{% trans "View" %}{% endif %}</a>
                 {% endif %}
             {% else %}
-              #{{ forloop.counter }}
+              #{{ forloop.parentloop.counter }}
             {% endif %}
           </span>
           {% if inline_admin_form.show_url %}
