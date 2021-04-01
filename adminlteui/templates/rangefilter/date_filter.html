@@ -3,6 +3,9 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}">
 <style>
+    .width_date_range {
+        min-width: 150px !important;
+    }
     .admindatefilter .button, .admindatefilter input[type=submit], .admindatefilter input[type=button], .admindatefilter .submit-row input, .admindatefilter a.button,
     .admindatefilter .button, .admindatefilter input[type=reset] {
         background: #79aec8;
@@ -140,7 +143,7 @@ https://github.com/django/django/blob/stable/1.10.x/django/contrib/admin/templat
     </div>
     {% for field in spec.form %}
         <div class="form-group">
-            {{ field|add_classes:'form-control' }}
+            {{ field|add_classes:'width_date_range form-control' }}
         </div>
     {% endfor %} 
     <br>
