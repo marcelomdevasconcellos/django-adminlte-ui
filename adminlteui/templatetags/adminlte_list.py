@@ -18,6 +18,7 @@ from treebeard.templatetags.admin_tree import check_empty_dict, get_parent_id, \
 register = Library()
 
 DOT = '.'
+DOTS = '…'
 
 
 @register.simple_tag
@@ -25,7 +26,7 @@ def adminlte_paginator_number(cl, i):
     """
     Generate an individual page index link in a paginated list.
     """
-    if i == DOT:
+    if i in [DOTS, DOT]:
         # <li class="paginate_button active"><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0">{}</a></li>'
         return format_html(
             '<li class="paginate_button"><a href="javascript:void(0);" aria-controls="example2" data-dt-idx="3" tabindex="0">… </a></li>')
