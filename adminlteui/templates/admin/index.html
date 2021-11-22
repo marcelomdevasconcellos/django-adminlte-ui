@@ -11,7 +11,11 @@
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
-    <li><a href="{% url 'admin:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+    <li>
+        <a href="{% url 'admin:index' %}">
+            <i class="fa fa-dashboard"></i> {% trans 'Home' %}
+        </a>
+    </li>
     <li class="active">{% trans 'dashboard' %}</li>
 </ol>
 {% endblock %}

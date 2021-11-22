@@ -5,7 +5,7 @@
         {% url cl.opts|admin_urlname:'add' as add_url %}
         <a href="{% add_preserved_filters add_url is_popup to_field %}" class="btn btn-success">
             {% blocktrans with cl.opts.verbose_name as name %}
-                <i class="fa fa-plus-circle"></i>&nbsp;{% trans 'Add' %}
+                <i class="fa fa-plus-circle"></i>&nbsp;{{name}}
             {% endblocktrans %}
         </a>
     {% endif %}
